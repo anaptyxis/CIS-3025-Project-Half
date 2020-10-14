@@ -95,8 +95,6 @@ abstract class Creature: IMobile, IActionable
         }
     }
 
-  
-
     /* Constructors */
 
     public Creature()
@@ -109,6 +107,9 @@ abstract class Creature: IMobile, IActionable
 
     /* methods */
 
+    /* It is necessary to override ToString() from the object class
+       if we want a custom serialized Creature object as a string.
+    */
     public override string ToString()
     {
         string output =
@@ -128,7 +129,12 @@ abstract class Creature: IMobile, IActionable
             "\nDarkvision: " + this.Darkvision + "\n";
         return output;
     }
-    // specify attacks in subclass
-    public abstract string Attack(Creature c);
+
+    /* We are required to implement Attack because we implement the
+       IActionable interface. However, because Creature is abstract
+       and there is no default attack, we will make Attack abstract
+       and define specific Attacks in subclasses by overriding. 
+    */
+    public abstract string Attack(Creature defender);
 
 }
